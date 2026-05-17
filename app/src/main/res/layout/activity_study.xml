@@ -8,31 +8,27 @@
     android:padding="24dp">
 
     <TextView
+        android:id="@+id/txtQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FlashQuest"
-        android:textSize="32sp"
+        android:text="Question"
+        android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginBottom="40dp"/>
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:id="@+id/txtAnswer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Answer"
+        android:textSize="20sp"
+        android:visibility="gone"
+        android:layout_marginBottom="24dp"/>
 
     <Button
-        android:id="@+id/btnDecks"
+        android:id="@+id/btnReveal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Study Decks"
-        android:layout_marginBottom="16dp"/>
-
-    <Button
-        android:id="@+id/btnGames"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Game Mode"
-        android:layout_marginBottom="16dp"/>
-
-    <Button
-        android:id="@+id/btnLeaderboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Leaderboard"/>
+        android:text="Reveal Answer"/>
 
 </LinearLayout>

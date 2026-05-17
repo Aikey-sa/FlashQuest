@@ -12,7 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FlashQuest">
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.LeaderboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.GameModeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.StudyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.DeckListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
