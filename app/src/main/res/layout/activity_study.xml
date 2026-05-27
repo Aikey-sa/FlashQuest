@@ -8,11 +8,27 @@
     android:padding="24dp">
 
     <TextView
+        android:id="@+id/txtProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Card 1/8"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/txtPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Points: 0"
+        android:textSize="18sp"
+        android:layout_marginBottom="32dp"/>
+
+    <TextView
         android:id="@+id/txtQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Question"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:layout_marginBottom="24dp"/>
 
@@ -21,14 +37,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Answer"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:visibility="gone"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="32dp"/>
 
     <Button
         android:id="@+id/btnReveal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reveal Answer"/>
+        android:text="Reveal Answer"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnKnown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Known"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnUnknown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Unknown"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next Card"/>
 
 </LinearLayout>

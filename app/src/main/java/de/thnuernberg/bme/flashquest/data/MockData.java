@@ -10,20 +10,14 @@ public class MockData {
 
         ArrayList<Flashcard> flashcards = new ArrayList<>();
 
-        flashcards.add(new Flashcard(
-                "What is the capital of Japan?",
-                "Tokyo"
-        ));
-
-        flashcards.add(new Flashcard(
-                "What does HTML stand for?",
-                "HyperText Markup Language"
-        ));
-
-        flashcards.add(new Flashcard(
-                "What is 5 + 7?",
-                "12"
-        ));
+        flashcards.add(new Flashcard("犬 (Inu)", "Dog"));
+        flashcards.add(new Flashcard("猫 (Neko)", "Cat"));
+        flashcards.add(new Flashcard("水 (Mizu)", "Water"));
+        flashcards.add(new Flashcard("火 (Hi)", "Fire"));
+        flashcards.add(new Flashcard("木 (Ki)", "Tree"));
+        flashcards.add(new Flashcard("山 (Yama)", "Mountain"));
+        flashcards.add(new Flashcard("空 (Sora)", "Sky"));
+        flashcards.add(new Flashcard("本 (Hon)", "Book"));
 
         return flashcards;
     }

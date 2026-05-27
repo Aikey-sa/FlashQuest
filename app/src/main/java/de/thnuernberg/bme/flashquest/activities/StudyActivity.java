@@ -17,7 +17,18 @@ public class StudyActivity extends AppCompatActivity {
 
     TextView txtQuestion;
     TextView txtAnswer;
+    TextView txtProgress;
+    TextView txtPoints;
+
     Button btnReveal;
+    Button btnKnown;
+    Button btnUnknown;
+    Button btnNext;
+
+    ArrayList<Flashcard> flashcards;
+
+    int currentIndex = 0;
+    int points = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,18 +37,63 @@ public class StudyActivity extends AppCompatActivity {
 
         txtQuestion = findViewById(R.id.txtQuestion);
         txtAnswer = findViewById(R.id.txtAnswer);
+        txtProgress = findViewById(R.id.txtProgress);
+        txtPoints = findViewById(R.id.txtPoints);
+
         btnReveal = findViewById(R.id.btnReveal);
+        btnKnown = findViewById(R.id.btnKnown);
+        btnUnknown = findViewById(R.id.btnUnknown);
+        btnNext = findViewById(R.id.btnNext);
 
-        ArrayList<Flashcard> flashcards =
-                MockData.getFlashcards();
+        flashcards = MockData.getFlashcards();
 
-        Flashcard firstCard = flashcards.get(0);
-
-        txtQuestion.setText(firstCard.getQuestion());
-        txtAnswer.setText(firstCard.getAnswer());
+        displayCard();
 
         btnReveal.setOnClickListener(v -> {
             txtAnswer.setVisibility(View.VISIBLE);
         });
+
+        btnKnown.setOnClickListener(v -> {
+
+            points += 1;
+
+            txtPoints.setText("Points: " + points);
+
+            flashcards.get(currentIndex).setKnown(true);
+        });
+
+        btnUnknown.setOnClickListener(v -> {
+
+            flashcards.get(currentIndex).setKnown(false);
+        });
+
+        btnNext.setOnClickListener(v -> {
+
+            currentIndex++;
+
+            if(currentIndex >= flashcards.size()) {
+                currentIndex = 0;
+            }
+
+            displayCard();
+        });
+    }
+
+    private void displayCard() {
+
+        Flashcard currentCard = flashcards.get(currentIndex);
+
+        txtQuestion.setText(currentCard.getQuestion());
+
+        txtAnswer.setText(currentCard.getAnswer());
+
+        txtAnswer.setVisibility(View.GONE);
+
+        txtProgress.setText(
+                "Card " +
+                        (currentIndex + 1) +
+                        "/" +
+                        flashcards.size()
+        );
     }
 }
