@@ -13,17 +13,12 @@
         android:text="Game Modes"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="32dp"/>
 
     <Button
+        android:id="@+id/btnQuizGame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sort-Storm"
-        android:layout_marginBottom="16dp"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Match-Madness"/>
+        android:text="Match-Madness Quiz Mode"/>
 
 </LinearLayout>

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FlashQuest">
         <activity
+            android:name=".activities.QuizGameActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.LeaderboardActivity"
             android:exported="false" />
         <activity
