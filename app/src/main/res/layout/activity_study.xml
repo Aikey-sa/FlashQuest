@@ -21,7 +21,15 @@
         android:layout_height="wrap_content"
         android:text="Points: 0"
         android:textSize="18sp"
-        android:layout_marginBottom="32dp"/>
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/txtKnownProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Known Cards: 0/8"
+        android:textSize="18sp"
+        android:layout_marginBottom="24dp"/>
 
     <TextView
         android:id="@+id/txtQuestion"

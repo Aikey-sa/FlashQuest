@@ -5,6 +5,7 @@ public class Flashcard {
     private String answer;
     private boolean known;
 
+
     public Flashcard(String question, String answer) {
         this.question = question;
         this.answer = answer;

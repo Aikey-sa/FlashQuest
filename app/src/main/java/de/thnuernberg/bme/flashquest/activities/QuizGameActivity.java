@@ -10,10 +10,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import de.thnuernberg.bme.flashquest.R;
+import de.thnuernberg.bme.flashquest.utils.PointsManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import androidx.appcompat.app.AlertDialog;
 
 public class QuizGameActivity extends AppCompatActivity {
 
@@ -40,7 +42,7 @@ public class QuizGameActivity extends AppCompatActivity {
     String firstValue = "";
     String secondValue = "";
 
-    int points = 0;
+    int matchedPairs = 0;
 
     boolean busy = false;
 
@@ -68,6 +70,10 @@ public class QuizGameActivity extends AppCompatActivity {
         buttons.add(btn6);
 
         setupGame();
+        txtPoints.setText(
+                "Points: " +
+                        PointsManager.getPoints(this)
+        );
     }
 
     private void setupGame() {
@@ -158,12 +164,15 @@ public class QuizGameActivity extends AppCompatActivity {
         handler.postDelayed(() -> {
 
             if(isMatch) {
+                matchedPairs++;
+                if(matchedPairs == 3) {
 
-                points++;
+                    showVictoryDialog();
+                }
 
-                txtPoints.setText(
-                        "Points: " + points
-                );
+                PointsManager.addPoints(this, 1);
+
+                txtPoints.setText("Points: " + PointsManager.getPoints(this));
 
                 firstButton.setBackgroundColor(
                         Color.GREEN
@@ -194,5 +203,27 @@ public class QuizGameActivity extends AppCompatActivity {
         secondValue = "";
 
         busy = false;
+    }
+    private void showVictoryDialog() {
+
+        new AlertDialog.Builder(this)
+                .setTitle("Game Complete!")
+                .setMessage(
+                        "You matched all vocabulary pairs.\n\n" +
+                                "Final Score: " +
+                                matchedPairs
+                )
+                .setPositiveButton(
+                        "Play Again",
+                        (dialog, which) -> {
+
+                            finish();
+
+                            startActivity(
+                                    getIntent()
+                            );
+                        }
+                )
+                .show();
     }
 }

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import de.thnuernberg.bme.flashquest.R;
 import de.thnuernberg.bme.flashquest.data.MockData;
 import de.thnuernberg.bme.flashquest.models.Flashcard;
+import de.thnuernberg.bme.flashquest.utils.PointsManager;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,7 @@ public class StudyActivity extends AppCompatActivity {
     TextView txtAnswer;
     TextView txtProgress;
     TextView txtPoints;
+    TextView txtKnownProgress;
 
     Button btnReveal;
     Button btnKnown;
@@ -28,7 +30,6 @@ public class StudyActivity extends AppCompatActivity {
     ArrayList<Flashcard> flashcards;
 
     int currentIndex = 0;
-    int points = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class StudyActivity extends AppCompatActivity {
         txtAnswer = findViewById(R.id.txtAnswer);
         txtProgress = findViewById(R.id.txtProgress);
         txtPoints = findViewById(R.id.txtPoints);
+        txtKnownProgress = findViewById(R.id.txtKnownProgress);
 
         btnReveal = findViewById(R.id.btnReveal);
         btnKnown = findViewById(R.id.btnKnown);
@@ -46,6 +48,11 @@ public class StudyActivity extends AppCompatActivity {
         btnNext = findViewById(R.id.btnNext);
 
         flashcards = MockData.getFlashcards();
+        updateKnownProgress();
+        txtPoints.setText(
+                "Points: " +
+                        PointsManager.getPoints(this)
+        );
 
         displayCard();
 
@@ -55,16 +62,23 @@ public class StudyActivity extends AppCompatActivity {
 
         btnKnown.setOnClickListener(v -> {
 
-            points += 1;
+            Flashcard currentCard =
+                    flashcards.get(currentIndex);
 
-            txtPoints.setText("Points: " + points);
+            if(!currentCard.isKnown()) {currentCard.setKnown(true);
 
-            flashcards.get(currentIndex).setKnown(true);
+                PointsManager.addPoints(this, 1);
+
+                txtPoints.setText("Points: " + PointsManager.getPoints(this));
+
+                updateKnownProgress();
+            }
         });
 
         btnUnknown.setOnClickListener(v -> {
 
             flashcards.get(currentIndex).setKnown(false);
+            updateKnownProgress();
         });
 
         btnNext.setOnClickListener(v -> {
@@ -77,6 +91,7 @@ public class StudyActivity extends AppCompatActivity {
 
             displayCard();
         });
+
     }
 
     private void displayCard() {
@@ -94,6 +109,25 @@ public class StudyActivity extends AppCompatActivity {
                         (currentIndex + 1) +
                         "/" +
                         flashcards.size()
+        );
+    }
+    private void updateKnownProgress() {
+
+        int knownCount = 0;
+
+        for(Flashcard card : flashcards) {
+
+            if(card.isKnown()) {
+
+                knownCount++;
+            }
+        }
+
+        txtKnownProgress.setText(
+                "Known Cards: "
+                        + knownCount
+                        + "/"
+                        + flashcards.size()
         );
     }
 }
